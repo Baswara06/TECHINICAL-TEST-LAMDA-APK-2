@@ -1,0 +1,2 @@
+# TECHINICAL-TEST-LAMDA-APK-2
+VB.NET + Spring Boot + PostgreSQL
