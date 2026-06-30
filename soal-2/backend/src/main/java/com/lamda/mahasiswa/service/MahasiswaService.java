@@ -28,7 +28,9 @@ public class MahasiswaService {
     public Mahasiswa save(Mahasiswa m) { return mahasiswaRepo.save(m); }
 
     public void delete(Integer id) { mahasiswaRepo.deleteById(id); }
+    public void deleteAll() { mahasiswaRepo.deleteAll(); }
 
     // ===== JURUSAN =====
     public List<Jurusan> getAllJurusan() { return jurusanRepo.findAll(); }
+    public Jurusan saveJurusan(Jurusan j) { return jurusanRepo.save(j); }
 }

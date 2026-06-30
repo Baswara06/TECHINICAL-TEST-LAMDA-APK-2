@@ -57,4 +57,10 @@ public class MahasiswaController {
         service.delete(id);
         return ResponseEntity.noContent().build();
     }
+
+    @DeleteMapping("/reset")
+    public ResponseEntity<Void> deleteAll() {
+        service.deleteAll();
+        return ResponseEntity.noContent().build();
+    }
 }

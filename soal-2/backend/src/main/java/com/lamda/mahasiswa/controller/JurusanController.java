@@ -18,4 +18,9 @@ public class JurusanController {
 
     @GetMapping
     public List<Jurusan> getAll() { return service.getAllJurusan(); }
+
+    @PostMapping
+    public Jurusan create(@RequestBody Jurusan j) {
+        return service.saveJurusan(j);
+    }
 }
