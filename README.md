@@ -34,13 +34,21 @@ soal-2/
 └── frontend/
     └── Mahasiswa/
 ```
+
+## Konfigurasi Database
+Edit file `backend/src/main/resources/application.properties`:
+```
+spring.datasource.url=jdbc:postgresql://localhost:5432/mahasiswa_db
+spring.datasource.username=postgres
+spring.datasource.password=YOUR_PASSWORD
+```
 ## Cara Menjalankan
 ### 1. Jalankan Backend
 ```bash
 cd backend
 mvn spring-boot:run
 ```
-Backend berjalan di: http://localhost:8080
+Backend berjalan di port 8080
 ### 2. Jalankan Frontend
 Buka project VB.NET di Visual Studio, lalu jalankan (F5).
 ### Swagger UI
