@@ -59,8 +59,7 @@ http://localhost:8080/swagger-ui.html
 ## Fitur Aplikasi
 - CRUD Data Mahasiswa (Create, Read, Update, Delete)
 - Search mahasiswa berdasarkan nama
-- Auto-create jurusan baru saat input data
 - Validasi input form
 - Export data ke Excel, PDF, CSV, JSON
 - Reset semua data mahasiswa
-- Tampilan card dengan detail expand/collapse
+
