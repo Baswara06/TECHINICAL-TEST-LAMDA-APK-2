@@ -646,7 +646,6 @@ Public Class Form1
             sfd.FileName = "mahasiswa.xlsx"
 
             If sfd.ShowDialog() = DialogResult.OK Then
-                ExcelPackage.LicenseContext = LicenseContext.NonCommercial
                 Using package As New ExcelPackage()
                     Dim ws = package.Workbook.Worksheets.Add("Mahasiswa")
                     Dim headers = {"Nama", "NIM", "Umur", "Tgl Lahir", "Alamat", "Jurusan", "Fakultas", "Jenjang"}
