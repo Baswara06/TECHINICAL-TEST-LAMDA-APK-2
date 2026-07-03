@@ -6,7 +6,7 @@ Imports Newtonsoft.Json.Serialization
 Public Class ApiHelper
 
     Private Shared ReadOnly client As New HttpClient()
-    Private Const BaseUrl As String = "http://localhost:8080/api"
+    Private Const BaseUrl As String = "http://127.0.0.1:57708/api"
 
     Private Shared ReadOnly jsonSettings As New JsonSerializerSettings() With {
         .ContractResolver = New CamelCasePropertyNamesContractResolver()

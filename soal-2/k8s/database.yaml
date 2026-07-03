@@ -1,0 +1,73 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: postgres-init-soal2
+data:
+  init.sql: |
+    DROP TABLE IF EXISTS public.mahasiswa;
+    DROP TABLE IF EXISTS public.jurusan;
+    CREATE TABLE public.jurusan (
+        id_jurusan SERIAL PRIMARY KEY,
+        nama_jurusan VARCHAR(255) NOT NULL,
+        fakultas VARCHAR(255) NOT NULL,
+        jenjang VARCHAR(50) NOT NULL
+    );
+    CREATE TABLE public.mahasiswa (
+        id SERIAL PRIMARY KEY,
+        nama VARCHAR(255) NOT NULL,
+        umur INT NOT NULL,
+        nim VARCHAR(50) NOT NULL UNIQUE,
+        tgl_lahir DATE NOT NULL,
+        alamat TEXT,
+        id_jurusan INT,
+        CONSTRAINT fk_mahasiswa_jurusan
+        FOREIGN KEY(id_jurusan)
+        REFERENCES public.jurusan(id_jurusan)
+        ON DELETE SET NULL
+    );
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: postgres-soal2
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: postgres-soal2
+  template:
+    metadata:
+      labels:
+        app: postgres-soal2
+    spec:
+      containers:
+        - name: postgres
+          image: postgres:15
+          env:
+            - name: POSTGRES_USER
+              value: postgres
+            - name: POSTGRES_PASSWORD
+              value: YOUR_PASSWORD
+            - name: POSTGRES_DB
+              value: mahasiswa_db
+          ports:
+            - containerPort: 5432
+          volumeMounts:
+            - name: init-script
+              mountPath: /docker-entrypoint-initdb.d/
+      volumes:
+        - name: init-script
+          configMap:
+            name: postgres-init-soal2
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: postgres-soal2-service
+spec:
+  selector:
+    app: postgres-soal2
+  ports:
+    - protocol: TCP
+      port: 5432
+      targetPort: 5432

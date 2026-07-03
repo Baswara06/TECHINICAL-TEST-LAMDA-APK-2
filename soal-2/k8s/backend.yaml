@@ -1,0 +1,39 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: backend-soal2
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: backend-soal2
+  template:
+    metadata:
+      labels:
+        app: backend-soal2
+    spec:
+      containers:
+        - name: backend-soal2
+          image: backend-soal2:latest
+          imagePullPolicy: Never
+          ports:
+            - containerPort: 8080
+          env:
+            - name: SPRING_DATASOURCE_URL
+              value: jdbc:postgresql://postgres-soal2-service:5432/mahasiswa_db
+            - name: SPRING_DATASOURCE_USERNAME
+              value: postgres
+            - name: SPRING_DATASOURCE_PASSWORD
+              value: YOUR_PASSWORD
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: backend-soal2-service
+spec:
+  selector:
+    app: backend-soal2
+  ports:
+    - port: 8080
+      targetPort: 8080
+  type: NodePort
